@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어커뮤니케이션션전공 1문 1답</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 0;
+            border-bottom: 3px solid #ddd;
+            overflow-x: auto;
+            padding-bottom: 0;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border: 2px solid transparent;
+            border-bottom: none;
+        }
+
+        .tab:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 0 15px 15px 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .tab-content h3 {
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+            color: #34495e;
+        }
+
+        .tab-content ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .tab-content li {
+            margin-bottom: 10px;
+        }
+
+        .columns {
+            display: grid;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .columns-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .columns-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .columns-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+        .info-box {
+            padding: 25px;
+            border-radius: 12px;
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+        }
+
+        .success-box {
+            padding: 25px;
+            border-radius: 12px;
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .warning-box {
+            padding: 25px;
+            border-radius: 12px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .error-box {
+            padding: 25px;
+            border-radius: 12px;
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .metric-delta {
+            font-size: 0.9em;
+            color: #28a745;
+            margin-top: 5px;
+        }
+
+        .progress {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            transition: width 0.6s ease;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        #did-agent {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .tab { padding: 10px 15px; font-size: 14px; }
+            .tab-content { padding: 20px; }
+            .columns, .columns-2, .columns-3, .columns-4 { 
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 미디어커뮤니케이션전공 1문 1답</h1>
+        <p>미래융합대학 헬스케어융합학부 | 황규민</p>
+    </header>
+
+    <div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="openTab('tab1')">전공소개</button>
+    <button class="tab" onclick="openTab('tab2')">언론정보</button>
+    <button class="tab" onclick="openTab('tab3')">광고·PR</button>
+    <button class="tab" onclick="openTab('tab4')">영상콘텐츠</button>
+    <button class="tab" onclick="openTab('tab5')">실감미디어(XR)</button>
+    <button class="tab" onclick="openTab('tab6')">헬스커뮤니케이션</button>
+    <button class="tab" onclick="openTab('tab7')">진로·취업</button>
+    <button class="tab" onclick="openTab('tab8')">광고의사회적의미</button>
+    <button class="tab" onclick="openTab('tab9')">광고인의역할</button>
+    <button class="tab" onclick="openTab('tab10')">전공장점</button>
+    <button class="tab" onclick="openTab('tab11')">AI·데이터커뮤니케이션</button>
+    <button class="tab" onclick="openTab('tab12')">졸업생사례</button>
+    <button class="tab" onclick="openTab('tab13')">창의융합프로젝트</button>
+    <button class="tab" onclick="openTab('tab14')">학과특징</button>
+  </div>
+
+       <div class="container">
+  <!-- 탭 1: 전공소개 -->
+  <div id="tab1" class="tab-content active">
+    <h2>🎓 미디어커뮤니케이션 전공이란?</h2>
+    <div class="columns columns-2">
+      <div class="info-box">
+        <strong>전공 개요</strong><br>
+        미디어커뮤니케이션 전공은 언론정보, 광고·PR, 영상콘텐츠, 실감미디어(XR), 헬스커뮤니케이션 등 
+        현대 커뮤니케이션의 핵심 영역을 포괄합니다. 학생들은 이론과 실무를 아우르며 
+        변화하는 미디어 환경 속 창의적 소통 전문가로 성장합니다.
+      </div>
+      <div class="success-box">
+        <strong>학습 목표</strong><br>
+        - 창의적 콘텐츠 기획력<br>
+        - 디지털 미디어 제작 능력<br>
+        - 데이터 기반 커뮤니케이션 분석력<br>
+        - 사회적 책임을 지닌 미디어 인재 양성
+      </div>
+    </div>
+  </div>
+
+  <!-- 탭 2: 언론정보 -->
+  <div id="tab2" class="tab-content">
+    <h2>📰 언론정보 분야</h2>
+    <div class="info-box">
+      <strong>학습 내용</strong><br>
+      디지털미디어와 저널리즘, 미디어비평, 언론과 PR 글쓰기, 미디어조사방법론 등을 중심으로 
+      정보 전달과 사회적 의제 형성 능력을 배웁니다.<br><br>
+      <strong>진로</strong><br>
+      기자, 뉴스 에디터, 콘텐츠 크리에이터, PR 담당자 등으로 진출합니다.
+    </div>
+  </div>
+
+  <!-- 탭 3: 광고·PR -->
+  <div id="tab3" class="tab-content">
+    <h2>📢 광고·PR 분야</h2>
+    <div class="columns columns-2">
+      <div class="info-box">
+        <strong>핵심 교과목</strong><br>
+        광고학개론, PR학개론, 광고기획, PR전략, 카피라이팅, 위기커뮤니케이션 등<br><br>
+        <strong>실습 중심 과목</strong><br>
+        광고홍보영상제작, 마케팅커뮤니케이션사례분석, 캠페인기획워크숍
+      </div>
+      <div class="success-box">
+        <strong>졸업 후 진출</strong><br>
+        광고기획자(AE), 카피라이터(CW), 아트디렉터(AD), 
+        미디어플래너(MP), PR전문가, 마케팅 매니저 등
+      </div>
+    </div>
+  </div>
+
+  <!-- 탭 4: 영상콘텐츠 -->
+  <div id="tab4" class="tab-content">
+    <h2>🎬 영상콘텐츠 분야</h2>
+    <div class="info-box">
+      방송, 광고, OTT, 유튜브 등 다양한 플랫폼을 위한 콘텐츠 기획·제작을 다룹니다.<br>
+      기획·촬영·편집의 전 과정을 실습하며, 팀 단위 프로젝트로 실무 역량을 강화합니다.<br><br>
+      <strong>관련 과목</strong><br>
+      영상제작기초 | 커뮤니케이션디자인 | 디지털영상제작 | 광고홍보영상제작
+    </div>
+  </div>
+
+  <!-- 탭 5: 실감미디어 -->
+  <div id="tab5" class="tab-content">
+    <h2>🕶️ 실감미디어(XR)</h2>
+    <div class="success-box">
+      <strong>핵심 개념</strong><br>
+      VR·AR·MR 등 실감 기술을 활용한 인터랙티브 스토리텔링 및 콘텐츠 제작.<br><br>
+      <strong>융합 분야</strong><br>
+      의학, 심리학, 예술, 스포츠 등 다양한 영역과 융합 가능성이 높습니다.
+    </div>
+  </div>
+
+  <!-- 탭 6: 헬스커뮤니케이션 -->
+  <div id="tab6" class="tab-content">
+    <h2>💊 헬스커뮤니케이션</h2>
+    <div class="info-box">
+      보건의료 정보와 커뮤니케이션을 융합하여 
+      건강 인식 제고와 공공 캠페인을 설계하는 학문입니다.<br><br>
+      <strong>진출 분야</strong><br>
+      의료기관 홍보팀, 제약회사, 정부·공공기관 캠페인 기획 등
+    </div>
+  </div>
+
+  <!-- 탭 7: 진로·취업 -->
+  <div id="tab7" class="tab-content">
+    <h2>💼 진로 및 취업 전망</h2>
+    <div class="success-box">
+      <strong>대표 진출 분야</strong><br>
+      - 방송·언론: PD, 기자, 뉴스제작<br>
+      - 광고·PR: AE, CW, 마케팅 매니저<br>
+      - 영상콘텐츠: 유튜브 PD, 콘텐츠 프로듀서<br>
+      - 헬스커뮤니케이션: 공공 캠페인 담당자<br><br>
+      <strong>졸업생 사례</strong><br>
+      방송국 제작팀, 대형 광고회사, OTT 플랫폼, 공공기관 홍보실 등 다수 진출
+    </div>
+  </div>
+
+  <!-- 탭 8: 광고의 사회적 의미 -->
+  <div id="tab8" class="tab-content">
+    <h2>🌍 광고의 사회적 역할</h2>
+    <div class="info-box">
+      광고는 단순한 상업 활동을 넘어 사회와 문화를 연결하는 창의적 소통 도구입니다.<br>
+      공익광고, 사회 캠페인, 국가브랜딩 등에도 중요한 역할을 합니다.
+    </div>
+  </div>
+
+  <!-- 탭 9: 광고인의 역할 -->
+  <div id="tab9" class="tab-content">
+    <h2>👥 광고인의 역할</h2>
+    <div class="success-box">
+      광고는 AE, CW, AD, PD, MP 등 여러 전문가의 협업으로 완성됩니다.<br>
+      이들은 아이디어, 전략, 비주얼, 스토리텔링을 통해 브랜드와 소비자를 연결합니다.
+    </div>
+  </div>
+
+  <!-- 탭 10: 전공장점 -->
+  <div id="tab10" class="tab-content">
+    <h2>✨ 미디어커뮤니케이션 전공의 강점</h2>
+    <div class="info-box">
+      - 이론과 실무의 균형 잡힌 커리큘럼<br>
+      - 산업 친화적 실습 중심 교육<br>
+      - 미디어 트렌드 대응형 교과 설계<br>
+      - 방송·광고·PR·XR 융합형 진로 선택 가능
+    </div>
+  </div>
+
+  <!-- 탭 11: AI·데이터커뮤니케이션 -->
+  <div id="tab11" class="tab-content">
+    <h2>🤖 AI 시대의 미디어커뮤니케이션</h2>
+    <div class="warning-box">
+      AI와 데이터 기반 커뮤니케이션은 미래 핵심 경쟁력입니다.<br>
+      미디어데이터 분석, AI 스토리텔링, 알고리즘 미디어 기획 등 최신 연구를 다룹니다.
+    </div>
+  </div>
+
+  <!-- 탭 12: 졸업생 사례 -->
+  <div id="tab12" class="tab-content">
+    <h2>🎓 졸업생 취업 사례</h2>
+    <div class="columns columns-2">
+      <div class="success-box">
+        <strong>방송·언론 분야</strong><br>
+        - 방송국 PD보조, 뉴스제작팀, 예능제작국 등
+      </div>
+      <div class="info-box">
+        <strong>광고·PR·마케팅 분야</strong><br>
+        - 광고대행사, PR대행사, 디지털마케팅 플랫폼, 기업홍보실
+      </div>
+    </div>
+  </div>
+
+  <!-- 탭 13: 창의융합프로젝트 -->
+  <div id="tab13" class="tab-content">
+    <h2>💡 창의융합 프로젝트</h2>
+    <div class="success-box">
+      학생들은 영상·광고·뉴스·XR 콘텐츠 제작 프로젝트를 수행하며 
+      팀워크, 커뮤니케이션, 스토리텔링 역량을 강화합니다.
+    </div>
+  </div>
+
+  <!-- 탭 14: 학과특징 -->
+  <div id="tab14" class="tab-content">
+    <h2>🏫 학과의 특징과 비전</h2>
+    <div class="info-box">
+      미디어산업, 광고산업, 공공커뮤니케이션 등에서 
+      융합형 인재를 양성하는 실무 중심 교육 프로그램을 운영합니다.<br>
+      차세대 미디어 전문가로서 사회와 기술을 연결하는 소통의 리더를 목표로 합니다.
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>📧 문의: 미디어커뮤니케이션학과 사무실</p>
+  <p>🌐 전공 홈페이지: https://comm.cha.ac.kr/</p>
+  <p style="margin-top: 15px; opacity: 0.8;">© 2025 차의과학대학교 미디어커뮤니케이션전공. All rights reserved.</p>
+</footer>
+
+    <!-- D-ID Agent -->
+    <script type="module">
+        console.log('🚀 D-ID Agent 초기화 시작...');
+        
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'https://agent.d-id.com/v2/index.js';
+        script.setAttribute('data-mode', 'fabio');
+        script.setAttribute('data-client-key', 'Z29vZ2xlLW9hdXRoMnwxMDgzMTAwNDAwMDE0NDUwOTc2NzA6eEVIcGFhMWJ3c1RfMlFDaEduTXlt');
+        script.setAttribute('data-agent-id', 'v2_agt_qZ0WxpLj');
+        script.setAttribute('data-name', 'did-agent');
+        script.setAttribute('data-monitor', 'true');
+        script.setAttribute('data-orientation', 'horizontal');
+        script.setAttribute('data-position', 'right');
+        
+        script.onload = () => {
+            console.log('✅ D-ID Agent 로딩 완료!');
+        };
+        
+        script.onerror = (e) => {
+            console.error('❌ D-ID Agent 로딩 실패:', e);
+        };
+        
+        document.body.appendChild(script);
+    </script>
+
+    <script>
+        function openTab(tabId) {
+            // 모든 탭 컨텐츠 숨기기
+            const contents = document.getElementsByClassName('tab-content');
+            for (let content of contents) {
+                content.classList.remove('active');
+            }
+            
+            // 모든 탭 버튼 비활성화
+            const tabs = document.getElementsByClassName('tab');
+            for (let tab of tabs) {
+                tab.classList.remove('active');
+            }
+            
+            // 선택된 탭 표시
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            
+            // 스크롤 맨 위로
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
