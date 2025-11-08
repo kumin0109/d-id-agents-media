@@ -254,7 +254,6 @@
     <button class="tab" onclick="openTab('tab12')">졸업생사례</button>
     <button class="tab" onclick="openTab('tab13')">창의융합프로젝트</button>
     <button class="tab" onclick="openTab('tab14')">학과특징</button>
-    <!-- 🔽 추가된 퀴즈 탭 버튼 -->
     <button class="tab" onclick="openTab('tab15')">퀴즈</button>
   </div>
 
@@ -482,49 +481,44 @@
     </div>
   </div>
 
-  <!-- 🔽 새로 추가된 탭 15: 퀴즈 (객관식 1문항 + 주관식 1문항) -->
+  <!-- 탭 15: 퀴즈 (추가) -->
   <div id="tab15" class="tab-content">
-    <h2>🧠 학습 점검 퀴즈</h2>
+    <h2>🧠 학습 점검 퀴즈 (2문항)</h2>
 
-    <div class="info-box" style="margin-bottom:12px">
-      ※ 응답 후 채점/지식 업데이트는 추후 Google Colab과 연동해 자동 처리됩니다.
-    </div>
-
-    <!-- 응답자 번호(식별용) -->
-    <div class="metric" style="margin: 10px 0 24px;">
-      <div class="metric-label">응답자 번호</div>
-      <input id="respondent-id" name="respondent_id" type="number" min="1" value="1"
-             style="margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid #ddd;width:140px;text-align:center;font-weight:600">
-    </div>
-
-    <!-- Q1: 객관식 -->
-    <div class="success-box">
-      <strong>1) 광고기획자(AE)의 주요 역할로 가장 알맞은 것은?</strong>
-      <div role="group" aria-label="광고기획자(AE) 역할" data-question-id="q1_ae" data-question-text="광고기획자(AE)의 주요 역할"
-           style="margin-top:8px; line-height:1.9">
-        <label style="display:block"><input type="radio" name="q1_ae" value="1|크리에이티브 제작만 담당"> ① 크리에이티브 제작만 담당</label>
-        <label style="display:block"><input type="radio" name="q1_ae" value="2|전략 수립 및 프로젝트 관리, 고객·내부 조율"> ② 전략 수립 및 프로젝트 관리, 고객·내부 조율</label>
-        <label style="display:block"><input type="radio" name="q1_ae" value="3|미디어 광고비 결제만 담당"> ③ 미디어 광고비 결제만 담당</label>
-        <label style="display:block"><input type="radio" name="q1_ae" value="4|카피 문장만 작성"> ④ 카피 문장만 작성</label>
+    <form id="quiz-form">
+      <!-- Q1: 객관식 -->
+      <div class="success-box" style="margin-bottom:12px">
+        <strong>1) 광고기획자(AE)의 핵심 역할은 무엇인가요?</strong>
+        <ol style="margin:10px 0 0 18px; line-height:1.9">
+          <li><label><input type="radio" name="q1" value="1"> ① 크리에이티브 제작(디자인 중심)</label></li>
+          <li><label><input type="radio" name="q1" value="2"> ② 전략 수립 및 프로젝트 관리(고객·내부 조율)</label></li>
+          <li><label><input type="radio" name="q1" value="3"> ③ 미디어 바잉(매체 구매)만 전담</label></li>
+          <li><label><input type="radio" name="q1" value="4"> ④ 카피 문장 작성만 수행</label></li>
+        </ol>
       </div>
-    </div>
 
-    <!-- Q2: 주관식 -->
-    <div class="warning-box" style="margin-top:16px">
-      <strong>2) 헬스커뮤니케이션의 핵심 목표를 한 문장으로 적어보세요.</strong>
-      <textarea id="q2_text" name="q2_text" rows="3"
-        placeholder="예: 대중의 건강 인식을 높이고 행동 변화를 촉진한다."
-        style="margin-top:10px;width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;"></textarea>
-    </div>
+      <!-- Q2: 주관식 -->
+      <div class="warning-box">
+        <strong>2) 헬스커뮤니케이션의 핵심 목표를 한 문장으로 적어보세요.</strong>
+        <textarea id="q2" name="q2" rows="3" placeholder="예: 대중의 건강 인식 제고, 행동 변화 촉진 등" style="margin-top:10px;width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;"></textarea>
+      </div>
 
-    <!-- (선택) 코랩 채점/피드백용 힌트 필드 -->
-    <div style="display:none">
-      <input type="hidden" id="q1_correct_index" value="2">
-      <input type="hidden" id="q1_correct_text" value="전략 수립 및 프로젝트 관리, 고객·내부 조율">
-      <input type="hidden" id="q2_keywords" value="건강,인식,행동,변화,공공,캠페인">
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button type="submit" class="tab active" style="border-radius:10px">제출 및 채점</button>
+        <button type="button" id="reset-quiz" class="tab" style="border-radius:10px">초기화</button>
+      </div>
+    </form>
+
+    <!-- 결과 -->
+    <div id="quiz-result" style="margin-top:20px;display:none">
+      <div class="metric">
+        <div class="metric-value" id="score-text">0 / 2</div>
+        <div class="metric-label">획득 점수</div>
+      </div>
+
+      <div id="feedback-cards" class="columns columns-1" style="gap:14px"></div>
     </div>
   </div>
-  <!-- 🔼 탭 15 끝 -->
 </div>
 
 <footer>
@@ -580,6 +574,71 @@
             // 스크롤 맨 위로
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // ===== 퀴즈 채점/피드백 (간단, 즉시 표시) =====
+        (function () {
+          const form = document.getElementById('quiz-form');
+          const resultBox = document.getElementById('quiz-result');
+          const scoreText = document.getElementById('score-text');
+          const feedback = document.getElementById('feedback-cards');
+          const resetBtn = document.getElementById('reset-quiz');
+
+          if (!form) return; // 다른 탭에서 오류 방지
+
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let score = 0;
+            feedback.innerHTML = '';
+
+            // 정답 기준
+            const correctQ1 = '2'; // AE의 핵심 역할
+            const ansQ1 = (new FormData(form).get('q1') || '').toString();
+            const ansQ2 = (document.getElementById('q2').value || '').trim();
+
+            // Q1 채점
+            if (ansQ1 === correctQ1) score += 1;
+            feedback.appendChild(makeCard(
+              '1번 문항',
+              ansQ1 ? `당신의 선택: ${ansQ1}번` : '선택하지 않음',
+              ansQ1 === correctQ1 ? '정답입니다! AE는 전략 수립과 프로젝트 관리(고객·내부 조율)가 핵심이에요.' :
+                '오답이에요. AE는 디자인/카피 단일 업무가 아니라, 전체 전략과 일정/조율을 책임지는 역할입니다.',
+              ansQ1 === correctQ1 ? 'success-box' : 'error-box'
+            ));
+
+            // Q2 간단 판정(키워드 포함 여부)
+            const keywords = ['인식', '행동', '캠페인', '건강', '소통', '정보'];
+            const hit = keywords.some(k => ansQ2.includes(k));
+            if (hit && ansQ2.length >= 4) score += 1;
+
+            feedback.appendChild(makeCard(
+              '2번 문항',
+              ansQ2 ? `당신의 답: "${ansQ2}"` : '미응답',
+              hit ? '좋아요! 건강 인식 제고/행동 변화/정보 전달과 같은 핵심을 잘 짚었습니다.' :
+                    '힌트: "건강 인식 제고", "행동 변화 촉진", "공공 캠페인 설계" 같은 표현을 포함해 보세요.',
+              hit ? 'success-box' : 'warning-box'
+            ));
+
+            // 점수 표시
+            scoreText.textContent = `${score} / 2`;
+            resultBox.style.display = 'block';
+            // 결과 영역으로 스크롤
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+          });
+
+          resetBtn.addEventListener('click', function () {
+            form.reset();
+            resultBox.style.display = 'none';
+            feedback.innerHTML = '';
+            scoreText.textContent = '0 / 2';
+          });
+
+          function makeCard(title, yourAns, comment, klass) {
+            const div = document.createElement('div');
+            div.className = klass;
+            div.innerHTML = `<strong>${title}</strong><br><div style="margin-top:6px">${yourAns}</div><div style="margin-top:8px;opacity:.9">${comment}</div>`;
+            return div;
+          }
+        })();
     </script>
 </body>
 </html>
