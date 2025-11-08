@@ -254,6 +254,7 @@
     <button class="tab" onclick="openTab('tab12')">졸업생사례</button>
     <button class="tab" onclick="openTab('tab13')">창의융합프로젝트</button>
     <button class="tab" onclick="openTab('tab14')">학과특징</button>
+    <button class="tab" onclick="openTab('tab15')">퀴즈</button>  
   </div>
 
        <div class="container">
@@ -479,6 +480,81 @@
       차세대 미디어 전문가로서 사회와 기술을 연결하는 소통의 리더를 목표로 합니다.
     </div>
   </div>
+  <!-- 탭 15: 퀴즈 -->
+<div id="tab15" class="tab-content">
+  <h2>🧠 학습 점검 퀴즈 (2문항)</h2>
+
+  <div class="info-box" style="margin-bottom:16px">
+    아래 2문항을 제출하면, 응답 내용이 지식베이스에 저장되고 즉시 피드백이 제공됩니다.
+    저장된 요약은 아바타에게도 전달되어 정답과 코멘트를 안내합니다.
+  </div>
+
+  <form id="quiz-form">
+    <!-- 응답자 ID (자동 할당, 사용자도 수정 가능) -->
+    <div class="metric" style="margin: 10px 0 24px;">
+      <div class="metric-label">응답자 번호</div>
+      <input id="respondent-id" name="respondentId" type="number" min="1" value="1"
+             style="margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid #ddd;width:140px;text-align:center;font-weight:600">
+      <div class="metric-delta" id="auto-id-hint" style="display:none">자동으로 다음 번호가 부여되었습니다.</div>
+    </div>
+
+    <!-- Q1: 객관식 -->
+    <div class="columns columns-1" style="gap:10px">
+      <div class="success-box">
+        <strong>1) 광고기획자(AE)의 핵심 역할은 무엇인가요?</strong>
+        <ol style="margin:10px 0 0 18px; line-height:1.9">
+          <li>
+            <label>
+              <input type="radio" name="q1" value="1|크리에이티브 제작(디자인 중심)"> ① 크리에이티브 제작(디자인 중심)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="q1" value="2|전략 수립 및 프로젝트 관리(고객·내부 조율)"> ② 전략 수립 및 프로젝트 관리(고객·내부 조율)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="q1" value="3|미디어 바잉(매체 구매)만 전담"> ③ 미디어 바잉(매체 구매)만 전담
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="q1" value="4|카피 문장 작성만 수행"> ④ 카피 문장 작성만 수행
+            </label>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Q2: 주관식 -->
+    <div class="columns columns-1" style="gap:10px;margin-top:16px">
+      <div class="warning-box">
+        <strong>2) 헬스커뮤니케이션의 핵심 목표 한 가지를 서술하세요.</strong>
+        <textarea id="q2" name="q2" rows="3"
+          placeholder="예: 대중의 건강 인식 제고, 행동 변화 촉진, 공공 캠페인 설계 등"
+          style="margin-top:10px;width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;"></textarea>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+      <button type="submit" class="tab active" style="border-radius:10px">제출 및 채점</button>
+      <button type="button" id="reset-quiz" class="tab" style="border-radius:10px">초기화</button>
+    </div>
+  </form>
+
+  <!-- 결과/피드백 -->
+  <div id="quiz-result" style="margin-top:24px;display:none">
+    <div class="metric">
+      <div class="metric-value" id="score-text">0 / 2</div>
+      <div class="metric-label">획득 점수</div>
+    </div>
+
+    <div id="feedback-cards" class="columns columns-1" style="gap:14px"></div>
+
+    <div class="info-box" id="knowledge-log" style="margin-top:16px;white-space:pre-line"></div>
+  </div>
+</div>         
 </div>
 
 <footer>
