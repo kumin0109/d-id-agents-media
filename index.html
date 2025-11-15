@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>미디어커뮤니케이션션전공 1문 1답</title>
+    <title>미디어커뮤니케이션전공 소개</title>
     <style>
         * {
             margin: 0;
@@ -12,84 +12,76 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
+            font-family: 'Malgun Gothic', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.2em;
-            opacity: 0.95;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
 
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 0;
-            border-bottom: 3px solid #ddd;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
             overflow-x: auto;
-            padding-bottom: 0;
         }
 
-        .tab {
-            padding: 15px 25px;
-            background: white;
+        .tab-button {
+            padding: 15px 20px;
+            background: #e9ecef;
             border: none;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 8px 8px 0 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
             transition: all 0.3s;
+            border-right: 1px solid #dee2e6;
             white-space: nowrap;
-            border: 2px solid transparent;
-            border-bottom: none;
         }
 
-        .tab:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px);
+        .tab-button:hover {
+            background: #dee2e6;
         }
 
-        .tab.active {
+        .tab-button.active {
             background: #667eea;
             color: white;
-            border-color: #667eea;
         }
 
         .tab-content {
             display: none;
-            background: white;
             padding: 40px;
-            border-radius: 0 15px 15px 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            animation: fadeIn 0.5s;
         }
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s;
         }
 
         @keyframes fadeIn {
@@ -97,548 +89,833 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .tab-content h2 {
-            font-size: 1.8em;
+        .slide {
+            min-height: 500px;
+        }
+
+        .slide h2 {
+            color: #667eea;
+            font-size: 2em;
             margin-bottom: 30px;
-            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
         }
 
-        .tab-content h3 {
-            font-size: 1.3em;
-            margin: 25px 0 15px;
-            color: #34495e;
+        .slide h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
         }
 
-        .tab-content ul {
-            margin-left: 25px;
-            margin-top: 15px;
-        }
-
-        .tab-content li {
+        .slide p, .slide li {
+            line-height: 1.8;
+            color: #495057;
+            font-size: 1.1em;
             margin-bottom: 10px;
         }
 
-        .columns {
+        .slide ul, .slide ol {
+            list-style-position: inside;
+            margin-left: 20px;
+        }
+
+        .box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .box p, .box li {
+            color: white;
+        }
+
+        .grid {
             display: grid;
-            gap: 30px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
 
-        .columns-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
-        .columns-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .columns-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-
-        .info-box {
+        .card {
+            background: #f8f9fa;
             padding: 25px;
-            border-radius: 12px;
-            background: #e7f3ff;
-            border-left: 4px solid #2196f3;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
         }
 
-        .success-box {
-            padding: 25px;
-            border-radius: 12px;
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-        }
-
-        .warning-box {
-            padding: 25px;
-            border-radius: 12px;
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-        }
-
-        .error-box {
-            padding: 25px;
-            border-radius: 12px;
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-        }
-
-        .metric {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .metric-value {
-            font-size: 2.5em;
-            font-weight: 700;
+        .card h4 {
             color: #667eea;
-            margin-bottom: 5px;
+            font-size: 1.3em;
+            margin-bottom: 15px;
         }
 
-        .metric-label {
-            font-size: 1em;
-            color: #666;
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            border-radius: 5px;
+            margin: 20px 0;
         }
 
-        .metric-delta {
-            font-size: 0.9em;
-            color: #28a745;
-            margin-top: 5px;
-        }
-
-        .progress {
-            background: #e9ecef;
-            border-radius: 10px;
-            height: 30px;
-            margin: 15px 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            transition: width 0.6s ease;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
+        .cover {
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
+            padding: 60px 40px;
         }
 
-        footer p {
-            margin: 5px 0;
+        .cover h1 {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 30px;
         }
 
-        #did-agent {
-            position: fixed !important;
-            bottom: 20px !important;
-            right: 20px !important;
-            z-index: 9999 !important;
+        .cover h2 {
+            font-size: 2em;
+            color: #764ba2;
+            margin-bottom: 40px;
+            border: none;
+        }
+
+        .cover p {
+            font-size: 1.2em;
+            color: #6c757d;
+            margin: 10px 0;
+        }
+
+        /* Quiz styles */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: #f8f9fa;
+            border: 3px solid #dee2e6;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #e7f3ff;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .quiz-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            color: #155724;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            color: #721c24;
+        }
+
+        .subjective-quiz {
+            margin-top: 30px;
+        }
+
+        .subjective-quiz textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Malgun Gothic', sans-serif;
+            margin-top: 10px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .tab { padding: 10px 15px; font-size: 14px; }
-            .tab-content { padding: 20px; }
-            .columns, .columns-2, .columns-3, .columns-4 { 
-                grid-template-columns: 1fr; 
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tab-button {
+                font-size: 12px;
+                padding: 12px 15px;
+            }
+            
+            .slide h2 {
+                font-size: 1.5em;
+            }
+            
+            .cover h1 {
+                font-size: 2em;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🎓 미디어커뮤니케이션전공 1문 1답</h1>
-        <p>미래융합대학 헬스케어융합학부 | 황규민</p>
-    </header>
-
     <div class="container">
-  <div class="tabs">
-    <button class="tab active" onclick="openTab('tab1')">전공소개</button>
-    <button class="tab" onclick="openTab('tab2')">언론정보</button>
-    <button class="tab" onclick="openTab('tab3')">광고·PR</button>
-    <button class="tab" onclick="openTab('tab4')">영상콘텐츠</button>
-    <button class="tab" onclick="openTab('tab5')">실감미디어(XR)</button>
-    <button class="tab" onclick="openTab('tab6')">헬스커뮤니케이션</button>
-    <button class="tab" onclick="openTab('tab7')">진로·취업</button>
-    <button class="tab" onclick="openTab('tab8')">광고의사회적의미</button>
-    <button class="tab" onclick="openTab('tab9')">광고인의역할</button>
-    <button class="tab" onclick="openTab('tab10')">전공장점</button>
-    <button class="tab" onclick="openTab('tab11')">AI·데이터커뮤니케이션</button>
-    <button class="tab" onclick="openTab('tab12')">졸업생사례</button>
-    <button class="tab" onclick="openTab('tab13')">창의융합프로젝트</button>
-    <button class="tab" onclick="openTab('tab14')">학과특징</button>
-    <button class="tab" onclick="openTab('tab15')">퀴즈</button>
-  </div>
+        <div class="header">
+            <h1>🎓 미디어커뮤니케이션전공</h1>
+            <p>미래융합대학 헬스케어융합학부 | 차의과학대학교</p>
+        </div>
 
-       <div class="container">
-  <!-- 탭 1: 전공소개 -->
-  <div id="tab1" class="tab-content active">
-    <h2>🎓 미디어커뮤니케이션 전공이란?</h2>
-    <div class="columns columns-2">
-      <div class="info-box">
-        <strong>전공 개요</strong><br>
-        미디어커뮤니케이션 전공은 언론정보, 광고·PR, 영상콘텐츠, 실감미디어(XR), 헬스커뮤니케이션 등 
-        현대 커뮤니케이션의 핵심 영역을 포괄합니다. 학생들은 이론과 실무를 아우르며 
-        변화하는 미디어 환경 속 창의적 소통 전문가로 성장합니다.
-      </div>
-      <div class="success-box">
-        <strong>학습 목표</strong><br>
-        - 창의적 콘텐츠 기획력<br>
-        - 디지털 미디어 제작 능력<br>
-        - 데이터 기반 커뮤니케이션 분석력<br>
-        - 사회적 책임을 지닌 미디어 인재 양성
-      </div>
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'tab1')">전공소개</button>
+            <button class="tab-button" onclick="openTab(event, 'tab2')">언론정보</button>
+            <button class="tab-button" onclick="openTab(event, 'tab3')">광고·PR</button>
+            <button class="tab-button" onclick="openTab(event, 'tab4')">영상콘텐츠</button>
+            <button class="tab-button" onclick="openTab(event, 'tab5')">실감미디어(XR)</button>
+            <button class="tab-button" onclick="openTab(event, 'tab6')">헬스커뮤니케이션</button>
+            <button class="tab-button" onclick="openTab(event, 'tab7')">진로·취업</button>
+            <button class="tab-button" onclick="openTab(event, 'tab8')">광고의 사회적 의미</button>
+            <button class="tab-button" onclick="openTab(event, 'tab9')">AI·데이터커뮤니케이션</button>
+            <button class="tab-button" onclick="openTab(event, 'tab10')">졸업생 사례</button>
+            <button class="tab-button" onclick="openTab(event, 'tab11')">전공장점</button>
+            <button class="tab-button" onclick="openTab(event, 'tab12')">학과특징</button>
+            <button class="tab-button" onclick="openTab(event, 'tab13')">퀴즈</button>
+        </div>
+
+        <div id="tab1" class="tab-content active">
+            <div class="slide">
+                <h2>🎓 미디어커뮤니케이션 전공이란?</h2>
+                
+                <div class="box">
+                    <h3>전공 개요</h3>
+                    <p>미디어커뮤니케이션 전공은 언론정보, 광고·PR, 영상콘텐츠, 실감미디어(XR), 헬스커뮤니케이션 등 현대 커뮤니케이션의 핵심 영역을 포괄합니다.</p>
+                    <p>학생들은 이론과 실무를 아우르며 변화하는 미디어 환경 속 창의적 소통 전문가로 성장합니다.</p>
+                </div>
+
+                <h3>학습 목표</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>창의적 콘텐츠 기획력</h4>
+                        <p>다양한 플랫폼을 위한 콘텐츠 기획 및 제작 능력</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>디지털 미디어 제작 능력</h4>
+                        <p>영상, 광고, 뉴미디어 콘텐츠 제작 실무 역량</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>데이터 기반 분석력</h4>
+                        <p>미디어 데이터 분석 및 커뮤니케이션 전략 수립</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>사회적 책임</h4>
+                        <p>윤리적 소통과 사회적 가치를 지닌 미디어 인재</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <div class="slide">
+                <h2>📰 언론정보 분야</h2>
+                
+                <div class="card">
+                    <h4>학습 내용</h4>
+                    <p>디지털미디어와 저널리즘, 미디어비평, 언론과 PR 글쓰기, 미디어조사방법론 등을 중심으로 정보 전달과 사회적 의제 형성 능력을 배웁니다.</p>
+                </div>
+
+                <div class="box">
+                    <h3>핵심 교과목</h3>
+                    <ul>
+                        <li>디지털미디어와 저널리즘</li>
+                        <li>미디어비평</li>
+                        <li>언론과 PR 글쓰기</li>
+                        <li>미디어조사방법론</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h3>진로 방향</h3>
+                    <p><strong>기자, 뉴스 에디터, 콘텐츠 크리에이터, PR 담당자</strong> 등으로 진출합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab3" class="tab-content">
+            <div class="slide">
+                <h2>📢 광고·PR 분야</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>핵심 교과목</h4>
+                        <ul>
+                            <li>광고학개론</li>
+                            <li>PR학개론</li>
+                            <li>광고기획</li>
+                            <li>PR전략</li>
+                            <li>카피라이팅</li>
+                            <li>위기커뮤니케이션</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>실습 중심 과목</h4>
+                        <ul>
+                            <li>광고홍보영상제작</li>
+                            <li>마케팅커뮤니케이션 사례분석</li>
+                            <li>캠페인기획 워크숍</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>졸업 후 진출 분야</h3>
+                    <p><strong>광고기획자(AE), 카피라이터(CW), 아트디렉터(AD), 미디어플래너(MP), PR전문가, 마케팅 매니저</strong> 등 다양한 분야로 진출 가능합니다.</p>
+                </div>
+
+                <div class="highlight">
+                    <p><strong>광고인의 역할:</strong> AE, CW, AD, PD, MP 등 여러 전문가의 협업으로 완성되며, 아이디어, 전략, 비주얼, 스토리텔링을 통해 브랜드와 소비자를 연결합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab4" class="tab-content">
+            <div class="slide">
+                <h2>🎬 영상콘텐츠 분야</h2>
+                
+                <div class="card">
+                    <h4>분야 소개</h4>
+                    <p>방송, 광고, OTT, 유튜브 등 다양한 플랫폼을 위한 콘텐츠 기획·제작을 다룹니다.</p>
+                    <p>기획·촬영·편집의 전 과정을 실습하며, 팀 단위 프로젝트로 실무 역량을 강화합니다.</p>
+                </div>
+
+                <div class="box">
+                    <h3>관련 과목</h3>
+                    <ul>
+                        <li>영상제작기초</li>
+                        <li>커뮤니케이션디자인</li>
+                        <li>디지털영상제작</li>
+                        <li>광고홍보영상제작</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h3>진로 방향</h3>
+                    <p><strong>유튜브 PD, 콘텐츠 프로듀서, 영상기획자, OTT 콘텐츠 제작자</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab5" class="tab-content">
+            <div class="slide">
+                <h2>🕶️ 실감미디어(XR)</h2>
+                
+                <div class="box">
+                    <h3>핵심 개념</h3>
+                    <p>VR·AR·MR 등 실감 기술을 활용한 인터랙티브 스토리텔링 및 콘텐츠 제작을 다룹니다.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>VR (가상현실)</h4>
+                        <p>완전히 몰입된 가상 환경 경험</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>AR (증강현실)</h4>
+                        <p>현실 세계에 가상 정보 오버레이</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>MR (혼합현실)</h4>
+                        <p>가상과 현실의 상호작용</p>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h3>융합 분야</h3>
+                    <p>의학, 심리학, 예술, 스포츠 등 다양한 영역과 융합 가능성이 높습니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab6" class="tab-content">
+            <div class="slide">
+                <h2>💊 헬스커뮤니케이션</h2>
+                
+                <div class="card">
+                    <h4>분야 소개</h4>
+                    <p>보건의료 정보와 커뮤니케이션을 융합하여 건강 인식 제고와 공공 캠페인을 설계하는 학문입니다.</p>
+                </div>
+
+                <div class="box">
+                    <h3>핵심 목표</h3>
+                    <ul>
+                        <li>대중의 건강 인식 제고</li>
+                        <li>건강 행동 변화 촉진</li>
+                        <li>공공 보건 캠페인 설계</li>
+                        <li>의료 정보의 효과적 전달</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h3>진출 분야</h3>
+                    <p><strong>의료기관 홍보팀, 제약회사, 정부·공공기관 캠페인 기획, 보건복지부 홍보실, 질병관리청</strong> 등</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab7" class="tab-content">
+            <div class="slide">
+                <h2>💼 진로 및 취업 전망</h2>
+                
+                <h3>대표 진출 분야</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>방송·언론</h4>
+                        <p>PD, 기자, 뉴스제작, 방송 프로그램 기획</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>광고·PR</h4>
+                        <p>AE, CW, AD, 마케팅 매니저, 디지털 마케팅 기획</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>영상콘텐츠</h4>
+                        <p>유튜브 PD, 콘텐츠 프로듀서, OTT 콘텐츠 기획</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>헬스커뮤니케이션</h4>
+                        <p>공공 캠페인 담당자, 의료 홍보 콘텐츠 제작</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>최근 취업 트렌드</h3>
+                    <p>OTT·디지털콘텐츠·AI커뮤니케이션 분야 취업률 상승</p>
+                    <p>방송·광고·공공 커뮤니케이션 등 다방면으로 진출 확대</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab8" class="tab-content">
+            <div class="slide">
+                <h2>🌍 광고의 사회적 역할</h2>
+                
+                <div class="card">
+                    <h4>광고의 의미</h4>
+                    <p>광고는 단순한 상업 활동을 넘어 사회와 문화를 연결하는 창의적 소통 도구입니다.</p>
+                </div>
+
+                <div class="box">
+                    <h3>광고의 다양한 역할</h3>
+                    <ul>
+                        <li><strong>상업적 역할:</strong> 브랜드와 소비자 연결</li>
+                        <li><strong>공익적 역할:</strong> 사회 캠페인, 공익광고</li>
+                        <li><strong>문화적 역할:</strong> 트렌드 형성, 문화 전파</li>
+                        <li><strong>국가적 역할:</strong> 국가 브랜딩, 이미지 제고</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <p>광고는 경제, 문화, 사회 전반에 걸쳐 중요한 영향을 미치며, 창의적이고 윤리적인 소통을 통해 사회적 가치를 창출합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab9" class="tab-content">
+            <div class="slide">
+                <h2>🤖 AI 시대의 미디어커뮤니케이션</h2>
+                
+                <div class="box">
+                    <h3>AI와 데이터 기반 커뮤니케이션</h3>
+                    <p>AI와 데이터 기반 커뮤니케이션은 미래 핵심 경쟁력입니다.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>미디어 데이터 분석</h4>
+                        <p>소셜 미디어 데이터, 시청률 분석, 소비자 행동 패턴 분석</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>AI 스토리텔링</h4>
+                        <p>AI 기반 콘텐츠 생성, 개인화된 메시지 전달</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>알고리즘 미디어 기획</h4>
+                        <p>추천 알고리즘 이해, 플랫폼 최적화 전략</p>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <p>미래의 미디어 전문가는 기술과 창의성을 융합하여 데이터 기반의 효과적인 커뮤니케이션 전략을 수립할 수 있어야 합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab10" class="tab-content">
+            <div class="slide">
+                <h2>🎓 졸업생 취업 사례</h2>
+                
+                <h3>📰 신문사·방송국 분야</h3>
+                <div class="box">
+                    <p><strong>동아일보, 중앙일보, 뉴시스, 여성경제신문, 내일신문, JTBC, CJ ENM, MBC 1AF, SBS 디지털</strong></p>
+                    <p style="margin-top: 10px;">역할: 기자, 뉴스 에디터, 콘텐츠 제작, 방송 프로그램 기획 및 보조 등</p>
+                </div>
+
+                <h3>📢 광고·PR·마케팅 분야</h3>
+                <div class="box">
+                    <p><strong>제일기획, 이노션, HS애드, TBWA KOREA, 오리콤, 나스미디어, 대홍기획</strong></p>
+                    <p style="margin-top: 10px;">역할: 광고기획자(AE), 카피라이터(CW), 아트디렉터(AD), 디지털 마케팅 기획 등</p>
+                </div>
+
+                <h3>🎬 영상·OTT·디지털콘텐츠 분야</h3>
+                <div class="box">
+                    <p><strong>넷플릭스 코리아, 왓챠, 플랜잇, 삼성전자 콘텐츠팀, 유튜브 크리에이티브 파트너사</strong></p>
+                    <p style="margin-top: 10px;">역할: PD, 영상기획자, 콘텐츠 프로듀서, 유튜브 콘텐츠 크리에이터 등</p>
+                </div>
+
+                <h3>💊 헬스커뮤니케이션·공공기관 분야</h3>
+                <div class="box">
+                    <p><strong>질병관리청, 국민건강보험공단, 보건복지부 홍보실, 한국관광공사, 지자체 홍보센터</strong></p>
+                    <p style="margin-top: 10px;">역할: 공공 캠페인 기획, 의료 홍보 콘텐츠 제작, 정책 커뮤니케이션 담당 등</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab11" class="tab-content">
+            <div class="slide">
+                <h2>✨ 미디어커뮤니케이션 전공의 강점</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>이론과 실무의 균형</h4>
+                        <p>체계적인 이론 교육과 실무 중심 프로젝트의 조화</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>산업 친화적 교육</h4>
+                        <p>현장 전문가 특강, 산학협력 프로젝트</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>트렌드 대응형 커리큘럼</h4>
+                        <p>최신 미디어 트렌드를 반영한 교과 설계</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>융합형 진로 선택</h4>
+                        <p>방송·광고·PR·XR 등 다양한 분야 선택 가능</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>창의융합 프로젝트</h3>
+                    <p>학생들은 영상·광고·뉴스·XR 콘텐츠 제작 프로젝트를 수행하며 팀워크, 커뮤니케이션, 스토리텔링 역량을 강화합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab12" class="tab-content">
+            <div class="slide">
+                <h2>🏫 학과의 특징과 비전</h2>
+                
+                <div class="card">
+                    <h4>교육 목표</h4>
+                    <p>미디어산업, 광고산업, 공공커뮤니케이션 등에서 융합형 인재를 양성하는 실무 중심 교육 프로그램을 운영합니다.</p>
+                </div>
+
+                <div class="box">
+                    <h3>우리의 비전</h3>
+                    <p>차세대 미디어 전문가로서 사회와 기술을 연결하는 소통의 리더를 목표로 합니다.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>창의성</h4>
+                        <p>독창적인 아이디어와 콘텐츠 개발</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>전문성</h4>
+                        <p>분야별 심화 학습과 실무 역량</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>융합성</h4>
+                        <p>다양한 분야와의 협업과 융합</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>윤리성</h4>
+                        <p>사회적 책임과 윤리적 소통</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab13" class="tab-content">
+            <div class="slide">
+                <h2>🧠 이해 문제</h2>
+                
+                <div class="quiz-container">
+                    <div class="card" style="margin-bottom: 30px;">
+                        <h4>답변자 정보</h4>
+                        <input type="text" id="studentName" placeholder="이름을 입력하세요" 
+                               style="width: 100%; padding: 12px; font-size: 1.1em; border: 2px solid #dee2e6; border-radius: 8px; margin-top: 10px;">
+                        <p style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">
+                            * 답변 결과가 AI 에이전트 지식베이스에 저장됩니다.
+                        </p>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        Q. 광고기획자(AE)의 핵심 역할은 무엇인가요?
+                    </div>
+                    
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">
+                            <strong>① </strong>크리에이티브 제작(디자인 중심)
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">
+                            <strong>② </strong>전략 수립 및 프로젝트 관리(고객·내부 조율)
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">
+                            <strong>③ </strong>미디어 바잉(매체 구매)만 전담
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">
+                            <strong>④ </strong>카피 문장 작성만 수행
+                        </div>
+                    </div>
+                    
+                    <div id="feedback" class="quiz-feedback">
+                        <div id="feedback-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab14" class="tab-content">
+            <div class="slide cover">
+                <h1>감사합니다</h1>
+                <h2>🎓 미디어커뮤니케이션전공</h2>
+                <br><br>
+                <p>미래융합대학 헬스케어융합학부</p>
+                <p>차의과학대학교</p>
+                <br>
+                <p>📧 문의: 미디어커뮤니케이션학과 사무실</p>
+                <p>🌐 전공 홈페이지: https://comm.cha.ac.kr/</p>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <!-- 탭 2: 언론정보 -->
-  <div id="tab2" class="tab-content">
-    <h2>📰 언론정보 분야</h2>
-    <div class="info-box">
-      <strong>학습 내용</strong><br>
-      디지털미디어와 저널리즘, 미디어비평, 언론과 PR 글쓰기, 미디어조사방법론 등을 중심으로 
-      정보 전달과 사회적 의제 형성 능력을 배웁니다.<br><br>
-      <strong>진로</strong><br>
-      기자, 뉴스 에디터, 콘텐츠 크리에이터, PR 담당자 등으로 진출합니다.
-    </div>
-  </div>
-
-  <!-- 탭 3: 광고·PR -->
-  <div id="tab3" class="tab-content">
-    <h2>📢 광고·PR 분야</h2>
-    <div class="columns columns-2">
-      <div class="info-box">
-        <strong>핵심 교과목</strong><br>
-        광고학개론, PR학개론, 광고기획, PR전략, 카피라이팅, 위기커뮤니케이션 등<br><br>
-        <strong>실습 중심 과목</strong><br>
-        광고홍보영상제작, 마케팅커뮤니케이션사례분석, 캠페인기획워크숍
-      </div>
-      <div class="success-box">
-        <strong>졸업 후 진출</strong><br>
-        광고기획자(AE), 카피라이터(CW), 아트디렉터(AD), 
-        미디어플래너(MP), PR전문가, 마케팅 매니저 등
-      </div>
-    </div>
-  </div>
-
-  <!-- 탭 4: 영상콘텐츠 -->
-  <div id="tab4" class="tab-content">
-    <h2>🎬 영상콘텐츠 분야</h2>
-    <div class="info-box">
-      방송, 광고, OTT, 유튜브 등 다양한 플랫폼을 위한 콘텐츠 기획·제작을 다룹니다.<br>
-      기획·촬영·편집의 전 과정을 실습하며, 팀 단위 프로젝트로 실무 역량을 강화합니다.<br><br>
-      <strong>관련 과목</strong><br>
-      영상제작기초 | 커뮤니케이션디자인 | 디지털영상제작 | 광고홍보영상제작
-    </div>
-  </div>
-
-  <!-- 탭 5: 실감미디어 -->
-  <div id="tab5" class="tab-content">
-    <h2>🕶️ 실감미디어(XR)</h2>
-    <div class="success-box">
-      <strong>핵심 개념</strong><br>
-      VR·AR·MR 등 실감 기술을 활용한 인터랙티브 스토리텔링 및 콘텐츠 제작.<br><br>
-      <strong>융합 분야</strong><br>
-      의학, 심리학, 예술, 스포츠 등 다양한 영역과 융합 가능성이 높습니다.
-    </div>
-  </div>
-
-  <!-- 탭 6: 헬스커뮤니케이션 -->
-  <div id="tab6" class="tab-content">
-    <h2>💊 헬스커뮤니케이션</h2>
-    <div class="info-box">
-      보건의료 정보와 커뮤니케이션을 융합하여 
-      건강 인식 제고와 공공 캠페인을 설계하는 학문입니다.<br><br>
-      <strong>진출 분야</strong><br>
-      의료기관 홍보팀, 제약회사, 정부·공공기관 캠페인 기획 등
-    </div>
-  </div>
-
-  <!-- 탭 7: 진로·취업 -->
-  <div id="tab7" class="tab-content">
-    <h2>💼 진로 및 취업 전망</h2>
-    <div class="success-box">
-      <strong>대표 진출 분야</strong><br>
-      - 방송·언론: PD, 기자, 뉴스제작<br>
-      - 광고·PR: AE, CW, 마케팅 매니저<br>
-      - 영상콘텐츠: 유튜브 PD, 콘텐츠 프로듀서<br>
-      - 헬스커뮤니케이션: 공공 캠페인 담당자<br><br>
-      <strong>졸업생 사례</strong><br>
-      방송국 제작팀, 광고·PR 기획, OTT/뉴미디어 운영, 공공기관 홍보 등
-    </div>
-  </div>
-
-  <!-- 탭 8: 광고의 사회적 의미 -->
-  <div id="tab8" class="tab-content">
-    <h2>🌍 광고의 사회적 역할</h2>
-    <div class="info-box">
-      광고는 단순한 상업 활동을 넘어 사회와 문화를 연결하는 창의적 소통 도구입니다.<br>
-      공익광고, 사회 캠페인, 국가브랜딩 등에도 중요한 역할을 합니다.
-    </div>
-  </div>
-
-  <!-- 탭 9: 광고인의 역할 -->
-  <div id="tab9" class="tab-content">
-    <h2>👥 광고인의 역할</h2>
-    <div class="success-box">
-      광고는 AE, CW, AD, PD, MP 등 여러 전문가의 협업으로 완성됩니다.<br>
-      이들은 아이디어, 전략, 비주얼, 스토리텔링을 통해 브랜드와 소비자를 연결합니다.
-    </div>
-  </div>
-
-  <!-- 탭 10: 전공장점 -->
-  <div id="tab10" class="tab-content">
-    <h2>✨ 미디어커뮤니케이션 전공의 강점</h2>
-    <div class="info-box">
-      - 이론과 실무의 균형 잡힌 커리큘럼<br>
-      - 산업 친화적 실습 중심 교육<br>
-      - 미디어 트렌드 대응형 교과 설계<br>
-      - 방송·광고·PR·XR 융합형 진로 선택 가능
-    </div>
-  </div>
-
-  <!-- 탭 11: AI·데이터커뮤니케이션 -->
-  <div id="tab11" class="tab-content">
-    <h2>🤖 AI 시대의 미디어커뮤니케이션</h2>
-    <div class="warning-box">
-      AI와 데이터 기반 커뮤니케이션은 미래 핵심 경쟁력입니다.<br>
-      미디어데이터 분석, AI 스토리텔링, 알고리즘 미디어 기획 등 최신 연구를 다룹니다.
-    </div>
-  </div>
-
-  <!-- 탭 12: 졸업생 취업 사례 -->
-<div id="tab12" class="tab-content">
-  <h2>🎓 졸업생 취업 사례</h2>
-
-  <div class="columns columns-2">
-    <div class="success-box">
-      <strong>📰 신문사·방송국 분야</strong><br>
-      <ul>
-        <li>동아일보</li>
-        <li>중앙일보</li>
-        <li>뉴시스</li>
-        <li>여성경제신문</li>
-        <li>내일신문</li>
-        <li>JTBC</li>
-        <li>CJ ENM</li>
-        <li>MBC 1AF</li>
-        <li>SBS 디지털</li>
-      </ul>
-      <em>💡 역할:</em> 기자, 뉴스 에디터, 콘텐츠 제작, 방송 프로그램 기획 및 보조 등
-    </div>
-
-    <div class="info-box">
-      <strong>📢 광고·PR·마케팅 분야</strong><br>
-      <ul>
-        <li>제일기획</li>
-        <li>이노션</li>
-        <li>HS애드</li>
-        <li>TBWA KOREA</li>
-        <li>오리콤</li>
-        <li>나스미디어</li>
-        <li>대홍기획</li>
-      </ul>
-      <em>💡 역할:</em> 광고기획자(AE), 카피라이터(CW), 아트디렉터(AD), 디지털 마케팅 기획 등
-    </div>
-  </div>
-
-  <div class="columns columns-2" style="margin-top: 20px;">
-    <div class="success-box">
-      <strong>🎬 영상·OTT·디지털콘텐츠 분야</strong><br>
-      <ul>
-        <li>넷플릭스 코리아</li>
-        <li>왓챠</li>
-        <li>플랜잇</li>
-        <li>삼성전자 콘텐츠팀</li>
-        <li>유튜브 크리에이티브 파트너사</li>
-      </ul>
-      <em>💡 역할:</em> PD, 영상기획자, 콘텐츠 프로듀서, 유튜브 콘텐츠 크리에이터 등
-    </div>
-
-    <div class="info-box">
-      <strong>💊 헬스커뮤니케이션·공공기관 분야</strong><br>
-      <ul>
-        <li>질병관리청</li>
-        <li>국민건강보험공단</li>
-        <li>보건복지부 홍보실</li>
-        <li>한국관광공사</li>
-        <li>지자체 홍보센터</li>
-      </ul>
-      <em>💡 역할:</em> 공공 캠페인 기획, 의료 홍보 콘텐츠 제작, 정책 커뮤니케이션 담당 등
-    </div>
-  </div>
-
-  <div class="success-box" style="margin-top: 20px;">
-    <strong>📈 최근 취업 트렌드</strong><br>
-    - OTT·디지털콘텐츠·AI커뮤니케이션 분야 취업률 상승<br>
-    - 방송·광고·공공 커뮤니케이션 등 다방면으로 진출 확대
-  </div>
-</div>
-
-  <!-- 탭 13: 창의융합프로젝트 -->
-  <div id="tab13" class="tab-content">
-    <h2>💡 창의융합 프로젝트</h2>
-    <div class="success-box">
-      학생들은 영상·광고·뉴스·XR 콘텐츠 제작 프로젝트를 수행하며 
-      팀워크, 커뮤니케이션, 스토리텔링 역량을 강화합니다.
-    </div>
-  </div>
-
-  <!-- 탭 14: 학과특징 -->
-  <div id="tab14" class="tab-content">
-    <h2>🏫 학과의 특징과 비전</h2>
-    <div class="info-box">
-      미디어산업, 광고산업, 공공커뮤니케이션 등에서 
-      융합형 인재를 양성하는 실무 중심 교육 프로그램을 운영합니다.<br>
-      차세대 미디어 전문가로서 사회와 기술을 연결하는 소통의 리더를 목표로 합니다.
-    </div>
-  </div>
-
-  <!-- 탭 15: 퀴즈 (추가) -->
-  <div id="tab15" class="tab-content">
-    <h2>🧠 학습 점검 퀴즈 (2문항)</h2>
-
-    <form id="quiz-form">
-      <!-- Q1: 객관식 -->
-      <div class="success-box" style="margin-bottom:12px">
-        <strong>1) 광고기획자(AE)의 핵심 역할은 무엇인가요?</strong>
-        <ol style="margin:10px 0 0 18px; line-height:1.9">
-          <li><label><input type="radio" name="q1" value="1"> ① 크리에이티브 제작(디자인 중심)</label></li>
-          <li><label><input type="radio" name="q1" value="2"> ② 전략 수립 및 프로젝트 관리(고객·내부 조율)</label></li>
-          <li><label><input type="radio" name="q1" value="3"> ③ 미디어 바잉(매체 구매)만 전담</label></li>
-          <li><label><input type="radio" name="q1" value="4"> ④ 카피 문장 작성만 수행</label></li>
-        </ol>
-      </div>
-
-      <!-- Q2: 주관식 -->
-      <div class="warning-box">
-        <strong>2) 헬스커뮤니케이션의 핵심 목표를 한 문장으로 적어보세요.</strong>
-        <textarea id="q2" name="q2" rows="3" placeholder="예: 대중의 건강 인식 제고, 행동 변화 촉진 등" style="margin-top:10px;width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;"></textarea>
-      </div>
-
-      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-        <button type="submit" class="tab active" style="border-radius:10px">제출 및 채점</button>
-        <button type="button" id="reset-quiz" class="tab" style="border-radius:10px">초기화</button>
-      </div>
-    </form>
-
-    <!-- 결과 -->
-    <div id="quiz-result" style="margin-top:20px;display:none">
-      <div class="metric">
-        <div class="metric-value" id="score-text">0 / 2</div>
-        <div class="metric-label">획득 점수</div>
-      </div>
-
-      <div id="feedback-cards" class="columns columns-1" style="gap:14px"></div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>📧 문의: 미디어커뮤니케이션학과 사무실</p>
-  <p>🌐 전공 홈페이지: https://comm.cha.ac.kr/</p>
-  <p style="margin-top: 15px; opacity: 0.8;">© 2025 차의과학대학교 미디어커뮤니케이션전공. All rights reserved.</p>
-</footer>
 
     <!-- D-ID Agent -->
-    <script type="module">
-        console.log('🚀 D-ID Agent 초기화 시작...');
-        
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = 'https://agent.d-id.com/v2/index.js';
-        script.setAttribute('data-mode', 'fabio');
-        script.setAttribute('data-client-key', 'Z29vZ2xlLW9hdXRoMnwxMDgzMTAwNDAwMDE0NDUwOTc2NzA6eEVIcGFhMWJ3c1RfMlFDaEduTXlt');
-        script.setAttribute('data-agent-id', 'v2_agt_qZ0WxpLj');
-        script.setAttribute('data-name', 'did-agent');
-        script.setAttribute('data-monitor', 'true');
-        script.setAttribute('data-orientation', 'horizontal');
-        script.setAttribute('data-position', 'right');
-        
-        script.onload = () => {
-            console.log('✅ D-ID Agent 로딩 완료!');
-        };
-        
-        script.onerror = (e) => {
-            console.error('❌ D-ID Agent 로딩 실패:', e);
-        };
-        
-        document.body.appendChild(script);
+    <script type="module"
+          src="https://agent.d-id.com/v2/index.js"
+          data-mode="fabio"
+          data-client-key="Z29vZ2xlLW9hdXRoMnwxMDgzMTAwNDAwMDE0NDUwOTc2NzA6eEVIcGFhMWJ3c1RfMlFDaEduTXlt"
+          data-agent-id="v2_agt_qZ0WxpLj"
+          data-name="did-agent"
+          data-monitor="true"
+          data-orientation="horizontal"
+          data-position="right">
     </script>
 
     <script>
-        function openTab(tabId) {
-            // 모든 탭 컨텐츠 숨기기
-            const contents = document.getElementsByClassName('tab-content');
-            for (let content of contents) {
-                content.classList.remove('active');
+        // D-ID Agent 설정
+        const AGENT_ID = "v2_agt_qZ0WxpLj";
+        const CLIENT_KEY = "Z29vZ2xlLW9hdXRoMnwxMDgzMTAwNDAwMDE0NDUwOTc2NzA6eEVIcGFhMWJ3c1RfMlFDaEduTXlt";
+        
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
             
-            // 모든 탭 버튼 비활성화
-            const tabs = document.getElementsByClassName('tab');
-            for (let tab of tabs) {
-                tab.classList.remove('active');
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
             }
             
-            // 선택된 탭 표시
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
-            
-            // 스크롤 맨 위로
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
-        // ===== 퀴즈 채점/피드백 (간단, 즉시 표시) =====
-        (function () {
-          const form = document.getElementById('quiz-form');
-          const resultBox = document.getElementById('quiz-result');
-          const scoreText = document.getElementById('score-text');
-          const feedback = document.getElementById('feedback-cards');
-          const resetBtn = document.getElementById('reset-quiz');
+        async function updateKnowledge(studentName, question, answer, isCorrect) {
+            try {
+                const response = await fetch('https://api.d-id.com/agents/' + AGENT_ID + '/knowledge', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + CLIENT_KEY
+                    },
+                    body: JSON.stringify({
+                        content: `[학생 답변 기록]\n이름: ${studentName}\n질문: ${question}\n답변: ${answer}\n정답 여부: ${isCorrect ? '정답' : '오답'}\n날짜: ${new Date().toLocaleString('ko-KR')}`
+                    })
+                });
 
-          if (!form) return; // 다른 탭에서 오류 방지
+                const result = await response.json();
+                
+                if (response.ok) {
+                    console.log('✅ 답변이 AI 에이전트에 저장되었습니다!');
+                    return true;
+                } else {
+                    console.error('⚠️ 저장 실패:', result);
+                    return false;
+                }
 
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let score = 0;
-            feedback.innerHTML = '';
+            } catch (error) {
+                console.error('Knowledge 업데이트 오류:', error);
+                return false;
+            }
+        }
 
-            // 정답 기준
-            const correctQ1 = '2'; // AE의 핵심 역할
-            const ansQ1 = (new FormData(form).get('q1') || '').toString();
-            const ansQ2 = (document.getElementById('q2').value || '').trim();
-
-            // Q1 채점
-            if (ansQ1 === correctQ1) score += 1;
-            feedback.appendChild(makeCard(
-              '1번 문항',
-              ansQ1 ? `당신의 선택: ${ansQ1}번` : '선택하지 않음',
-              ansQ1 === correctQ1 ? '정답입니다! AE는 전략 수립과 프로젝트 관리(고객·내부 조율)가 핵심이에요.' :
-                '오답이에요. AE는 디자인/카피 단일 업무가 아니라, 전체 전략과 일정/조율을 책임지는 역할입니다.',
-              ansQ1 === correctQ1 ? 'success-box' : 'error-box'
-            ));
-
-            // Q2 간단 판정(키워드 포함 여부)
-            const keywords = ['인식', '행동', '캠페인', '건강', '소통', '정보'];
-            const hit = keywords.some(k => ansQ2.includes(k));
-            if (hit && ansQ2.length >= 4) score += 1;
-
-            feedback.appendChild(makeCard(
-              '2번 문항',
-              ansQ2 ? `당신의 답: "${ansQ2}"` : '미응답',
-              hit ? '좋아요! 건강 인식 제고/행동 변화/정보 전달과 같은 핵심을 잘 짚었습니다.' :
-                    '힌트: "건강 인식 제고", "행동 변화 촉진", "공공 캠페인 설계" 같은 표현을 포함해 보세요.',
-              hit ? 'success-box' : 'warning-box'
-            ));
-
-            // 점수 표시
-            scoreText.textContent = `${score} / 2`;
-            resultBox.style.display = 'block';
-            // 결과 영역으로 스크롤
-            resultBox.scrollIntoView({ behavior: 'smooth' });
-          });
-
-          resetBtn.addEventListener('click', function () {
-            form.reset();
-            resultBox.style.display = 'none';
-            feedback.innerHTML = '';
-            scoreText.textContent = '0 / 2';
-          });
-
-          function makeCard(title, yourAns, comment, klass) {
-            const div = document.createElement('div');
-            div.className = klass;
-            div.innerHTML = `<strong>${title}</strong><br><div style="margin-top:6px">${yourAns}</div><div style="margin-top:8px;opacity:.9">${comment}</div>`;
-            return div;
-          }
-        })();
+        function checkAnswer(element, isCorrect) {
+            // 이름 확인
+            const studentName = document.getElementById('studentName').value.trim();
+            if (!studentName) {
+                alert('답변자 이름을 먼저 입력해주세요!');
+                return;
+            }
+            
+            // 이미 답변한 경우 무시
+            if (element.classList.contains('disabled')) {
+                return;
+            }
+            
+            // 선택한 답변 텍스트
+            const selectedAnswer = element.textContent.trim();
+            const question = "광고기획자(AE)의 핵심 역할은 무엇인가요?";
+            
+            // 모든 옵션 비활성화
+            var options = document.getElementsByClassName('quiz-option');
+            for (var i = 0; i < options.length; i++) {
+                options[i].classList.add('disabled');
+            }
+            
+            // 피드백 요소
+            var feedback = document.getElementById('feedback');
+            var feedbackText = document.getElementById('feedback-text');
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.className = 'quiz-feedback correct show';
+                feedbackText.innerHTML = '<strong>✓ 정답입니다!</strong><br><br>' +
+                    'AE는 전략 수립과 프로젝트 관리(고객·내부 조율)가 핵심입니다. ' +
+                    '광고 캠페인의 전체적인 방향을 설정하고, 클라이언트와 크리에이티브팀을 연결하는 중요한 역할을 담당합니다.<br><br>' +
+                    '<em style="color: #28a745;">답변을 저장하고 있습니다...</em>';
+            } else {
+                element.classList.add('incorrect');
+                feedback.className = 'quiz-feedback incorrect show';
+                feedbackText.innerHTML = '<strong>✗ 아쉽습니다.</strong><br><br>' +
+                    '정답은 <strong>②번</strong>입니다.<br><br>' +
+                    'AE(Account Executive)는 디자인이나 카피 작성만 담당하는 것이 아니라, ' +
+                    '광고 캠페인의 전략을 수립하고 프로젝트를 관리하며 고객과 내부 팀을 조율하는 종합적인 역할을 수행합니다.<br><br>' +
+                    '<em style="color: #dc3545;">답변을 저장하고 있습니다...</em>';
+                
+                // 정답 표시
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].textContent.includes('②')) {
+                        options[i].classList.add('correct');
+                    }
+                }
+            }
+            
+            // D-ID Knowledge 업데이트 (비동기)
+            updateKnowledge(studentName, question, selectedAnswer, isCorrect).then(success => {
+                // 저장 완료 메시지 업데이트
+                const currentHTML = feedbackText.innerHTML;
+                if (success) {
+                    feedbackText.innerHTML = currentHTML.replace(
+                        '답변을 저장하고 있습니다...',
+                        '✅ 답변이 AI 에이전트에 저장되었습니다!'
+                    );
+                } else {
+                    feedbackText.innerHTML = currentHTML.replace(
+                        '답변을 저장하고 있습니다...',
+                        '⚠️ 답변 저장 중 오류가 발생했습니다.'
+                    );
+                }
+            });
+        }
     </script>
+
+     <!-- D-ID AI Agent -->
+     <script type="module"
+           src="https://agent.d-id.com/v2/index.js"
+           data-mode="fabio"
+           data-client-key="Z29vZ2xlLW9hdXRoMnwxMDgzMTAwNDAwMDE0NDUwOTc2NzA6eEVIcGFhMWJ3c1RfMlFDaEduTXlt"
+           data-agent-id="v2_agt_qZ0WxpLj"
+           data-name="did-agent"
+           data-monitor="true"
+           data-orientation="horizontal"
+           data-position="right">
+     </script>
 </body>
 </html>
