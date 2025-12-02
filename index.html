@@ -807,34 +807,36 @@
             evt.currentTarget.classList.add("active");
         }
 
-        async function updateKnowledge(studentName, question, answer, isCorrect) {
-            try {
-                const response = await fetch('https://api.d-id.com/agents/' + AGENT_ID + '/knowledge', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Basic ' + CLIENT_KEY
-                    },
-                    body: JSON.stringify({
-                        content: `[학생 답변 기록]\n이름: ${studentName}\n질문: ${question}\n답변: ${answer}\n정답 여부: ${isCorrect ? '정답' : '오답'}\n날짜: ${new Date().toLocaleString('ko-KR')}`
-                    })
-                });
+       async function updateKnowledge(studentName, question, answer, isCorrect) {
+    try {
+        const response = await fetch('/.netlify/functions/update-knowledge', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                studentName,
+                question,
+                answer,
+                isCorrect
+            })
+        });
 
-                const result = await response.json();
-                
-                if (response.ok) {
-                    console.log('✅ 답변이 AI 에이전트에 저장되었습니다!');
-                    return true;
-                } else {
-                    console.error('⚠️ 저장 실패:', result);
-                    return false;
-                }
-
-            } catch (error) {
-                console.error('Knowledge 업데이트 오류:', error);
-                return false;
-            }
+        const result = await response.json();
+        
+        if (response.ok) {
+            console.log('✅ 답변이 AI 에이전트에 저장되었습니다!');
+            return true;
+        } else {
+            console.error('⚠️ 저장 실패:', result);
+            return false;
         }
+
+    } catch (error) {
+        console.error('Knowledge 업데이트 오류:', error);
+        return false;
+    }
+}
 
         function checkAnswer(element, isCorrect) {
             // 이름 확인
